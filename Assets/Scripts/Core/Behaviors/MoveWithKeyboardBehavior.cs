@@ -49,8 +49,10 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             float speed = Input.GetAxis("Vertical") * agent.maxAccel;
             float rotation = - Input.GetAxis("Horizontal") / 20;
 
-       
-            dir = RotateVector2d(dir, rotation).normalized;
+            if (speed != 0) {
+                dir = RotateVector2d(dir, rotation).normalized;
+            }
+            
 
             steering.linear = dir * speed;
 
@@ -63,7 +65,10 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             float rotation = -Input.GetAxis("HorizontalWASD") / 20;
 
 
-            dir = RotateVector2d(dir, rotation).normalized;
+            if (speed != 0)
+            {
+                dir = RotateVector2d(dir, rotation).normalized;
+            }
             this.transform.LookAt(this.transform.position + dir);
             steering.linear = dir * speed;
 
