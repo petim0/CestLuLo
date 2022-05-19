@@ -16,6 +16,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
     private Vector3 _target;
     public Camera Camera;
+    private Vector3 dir;
 
     private bool mooving = false;
 
@@ -25,6 +26,8 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         } else if (this.gameObject.CompareTag("Player2")){
             inputKeyboard = PersistentManagerScript.Instance.p2Controls;
         }
+
+        dir = new Vector3(1, 0, 0);
     }
 
     public void OnEnable()
@@ -43,14 +46,27 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         //implement your code here
         if ((int) inputKeyboard == 0)
         {
-            
-            steering.linear = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * agent.maxAccel;
+            float speed = Input.GetAxis("Vertical") * agent.maxAccel;
+            float rotation = - Input.GetAxis("Horizontal") / 20;
+
+       
+            dir = RotateVector2d(dir, rotation).normalized;
+
+            steering.linear = dir * speed;
+
             steering.linear = this.transform.parent.TransformDirection(Vector3.ClampMagnitude(steering.linear, agent.maxAccel));
 
         }
         else if ((int) inputKeyboard == 1)
         {
-            steering.linear = new Vector3(Input.GetAxis("HorizontalWASD"), 0, Input.GetAxis("VerticalWASD")) * agent.maxAccel;
+            float speed = Input.GetAxis("VerticalWASD") * agent.maxAccel;
+            float rotation = -Input.GetAxis("HorizontalWASD") / 20;
+
+
+            dir = RotateVector2d(dir, rotation).normalized;
+
+            steering.linear = dir * speed;
+
             steering.linear = this.transform.parent.TransformDirection(Vector3.ClampMagnitude(steering.linear, agent.maxAccel));
         }
         else {
@@ -102,9 +118,18 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
         if (this.gameObject.CompareTag("Player2"))
         {
-            Debug.Log(steering.linear.ToString());
+            //Debug.Log(steering.linear.ToString());
         }
 
         return steering;
+    }
+
+
+    private Vector3 RotateVector2d(Vector3 dir, float rad)
+    {
+        Vector3 result = new Vector3(0, 0, 0);
+        result.x = dir.x * (float) Math.Cos(rad) - dir.z * (float) Math.Sin(rad);
+        result.z = dir.x * (float) Math.Sin(rad) + dir.z * (float) Math.Cos(rad);
+        return result;
     }
 }
