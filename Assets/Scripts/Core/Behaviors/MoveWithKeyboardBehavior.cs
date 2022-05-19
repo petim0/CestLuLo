@@ -64,7 +64,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
 
             dir = RotateVector2d(dir, rotation).normalized;
-
+            this.transform.LookAt(this.transform.position + dir);
             steering.linear = dir * speed;
 
             steering.linear = this.transform.parent.TransformDirection(Vector3.ClampMagnitude(steering.linear, agent.maxAccel));
