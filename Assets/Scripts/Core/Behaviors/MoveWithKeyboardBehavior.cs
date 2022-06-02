@@ -13,10 +13,13 @@ public enum InputKeyboard{
 public class MoveWithKeyboardBehavior : AgentBehaviour
 {
     private InputKeyboard inputKeyboard;
+     
 
     private Vector3 _target;
     public Camera Camera;
-
+    private Vector3 dir;
+    private float lastspeed;
+    private float BRAKING;
     private bool mooving = false;
 
     void Start(){
@@ -25,6 +28,10 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         } else if (this.gameObject.CompareTag("Player2")){
             inputKeyboard = PersistentManagerScript.Instance.p2Controls;
         }
+
+        dir = new Vector3(1, 0, 0);
+        lastspeed = 0;
+        BRAKING = (float) 0.2;
     }
 
     public void OnEnable()
@@ -40,17 +47,69 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     {
 
         Steering steering = new Steering();
-        //implement your code here
+
+        
+
         if ((int) inputKeyboard == 0)
         {
-            
-            steering.linear = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * agent.maxAccel;
+
+            float speed = 0;
+            float brakingSpeed;
+            bool isGoingForward = lastspeed >= 0 ;
+
+            if (isGoingForward)
+            {
+                speed = Math.Max(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed - (float)0.1);
+                brakingSpeed = BRAKING;
+
+            }
+            else {
+                Debug.Log((Input.GetAxis("Vertical") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
+                Debug.Log(Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1).ToString());
+                speed = Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1);
+                brakingSpeed = -BRAKING;
+
+            }
+
+           
+            if (Input.GetAxis("breakKeys") > 0) {
+                speed = lastspeed - brakingSpeed;
+                if ((speed < 0 && isGoingForward) || (speed > 0 && !isGoingForward)) {
+                    speed = 0;
+                }
+            }
+
+
+            lastspeed = speed;
+
+
+            //Debug.Log(speed.ToString());
+            float rotation = - Input.GetAxis("Horizontal") / 20;
+
+            if (speed != 0) {
+                dir = RotateVector2d(dir, rotation).normalized;
+            }
+
+            this.transform.LookAt(this.transform.position + dir);
+            steering.linear = dir * speed;
+
             steering.linear = this.transform.parent.TransformDirection(Vector3.ClampMagnitude(steering.linear, agent.maxAccel));
 
         }
         else if ((int) inputKeyboard == 1)
         {
-            steering.linear = new Vector3(Input.GetAxis("HorizontalWASD"), 0, Input.GetAxis("VerticalWASD")) * agent.maxAccel;
+            float speed = Input.GetAxis("VerticalWASD") * agent.maxAccel;
+            float rotation = -Input.GetAxis("HorizontalWASD") / 20;
+
+
+            if (speed != 0)
+            {
+                dir = RotateVector2d(dir, rotation).normalized;
+            }
+            //ADD INERTIA !!!
+            this.transform.LookAt(this.transform.position + dir);
+            steering.linear = dir * speed;
+
             steering.linear = this.transform.parent.TransformDirection(Vector3.ClampMagnitude(steering.linear, agent.maxAccel));
         }
         else {
@@ -102,9 +161,18 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
         if (this.gameObject.CompareTag("Player2"))
         {
-            Debug.Log(steering.linear.ToString());
+            //Debug.Log(steering.linear.ToString());
         }
 
         return steering;
+    }
+
+
+    private Vector3 RotateVector2d(Vector3 dir, float rad)
+    {
+        Vector3 result = new Vector3(0, 0, 0);
+        result.x = dir.x * (float) Math.Cos(rad) - dir.z * (float) Math.Sin(rad);
+        result.z = dir.x * (float) Math.Sin(rad) + dir.z * (float) Math.Cos(rad);
+        return result;
     }
 }

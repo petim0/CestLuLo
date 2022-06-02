@@ -30,6 +30,8 @@ public class SteeringAgent : MonoBehaviour
     protected virtual void FixedUpdate(){
         steering = new Steering();
         foreach(AgentBehaviour behaviour in behaviours){
+            
+            
             if (blendWeight)
                 SetSteering(behaviour.GetSteering(), behaviour.weight);
             else
@@ -53,6 +55,7 @@ public class SteeringAgent : MonoBehaviour
     public void SetSteering(Steering steering)
     {
         this.steering = steering;
+        Debug.Log(steering.linear.ToString() + this.GetInstanceID().ToString());
     }
 
     public void SetSteering(Steering steering, float weight)
