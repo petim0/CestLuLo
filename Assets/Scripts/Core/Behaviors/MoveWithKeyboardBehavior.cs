@@ -22,6 +22,11 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     private float BRAKING;
     private bool mooving = false;
 
+    //PARALYZED
+    private int paralyzedTime = 200;
+    public bool isParalyzed;
+    //
+
     void Start(){
         if (this.gameObject.CompareTag("Player1")){
             inputKeyboard = PersistentManagerScript.Instance.p1Controls;
@@ -79,6 +84,15 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
                 }
             }
 
+            if (isParalyzed && paralyzedTime > 0) {
+                paralyzedTime -= 1;
+                speed = 0;
+                Debug.Log("PARALYZED");
+                if (paralyzedTime < 0) {
+                    isParalyzed = false;
+                }
+            }
+
 
             lastspeed = speed;
 
@@ -98,7 +112,19 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         }
         else if ((int) inputKeyboard == 1)
         {
-            float speed = Input.GetAxis("VerticalWASD") * agent.maxAccel;
+            //float speed = Input.GetAxis("VerticalWASD") * agent.maxAccel;
+            //PARALYZED
+            float speed;
+            if (isParalyzed && paralyzedTime > 0) {
+                paralyzedTime -= 1;
+                speed = 0;
+                Debug.Log("PARALYZED");
+                if (paralyzedTime < 0) {
+                    isParalyzed = false;
+                }
+            } else {
+                speed = Input.GetAxis("VerticalWASD") * agent.maxAccel;
+            }
             float rotation = -Input.GetAxis("HorizontalWASD") / 20;
 
 
@@ -149,7 +175,16 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
                     }
                     direction.Normalize();
 
-                    //Debug.Log("D After normalisation: " + direction.ToString());
+                    if (isParalyzed && paralyzedTime > 0) {
+                        paralyzedTime -= 1;
+                        direction = Vector3.zero;
+                        Debug.Log("PARALYZED");
+                    if (paralyzedTime < 0) {
+                        isParalyzed = false;
+                    }
+                }
+
+                //Debug.Log("D After normalisation: " + direction.ToString());
                     steering.linear = direction * agent.maxAccel;
                 }                
             }
@@ -174,5 +209,11 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         result.x = dir.x * (float) Math.Cos(rad) - dir.z * (float) Math.Sin(rad);
         result.z = dir.x * (float) Math.Sin(rad) + dir.z * (float) Math.Cos(rad);
         return result;
+    }
+
+
+
+    public void Paralyze() {
+        isParalyzed = isParalyzed == true ? false : true;
     }
 }
