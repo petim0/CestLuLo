@@ -13,11 +13,13 @@ public enum InputKeyboard{
 public class MoveWithKeyboardBehavior : AgentBehaviour
 {
     private InputKeyboard inputKeyboard;
+     
 
     private Vector3 _target;
     public Camera Camera;
     private Vector3 dir;
-
+    private float lastspeed;
+    private float BRAKING;
     private bool mooving = false;
 
     void Start(){
@@ -28,6 +30,8 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         }
 
         dir = new Vector3(1, 0, 0);
+        lastspeed = 0;
+        BRAKING = (float) 0.2;
     }
 
     public void OnEnable()
@@ -43,17 +47,50 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     {
 
         Steering steering = new Steering();
-        //implement your code here
+
+        
+
         if ((int) inputKeyboard == 0)
         {
-            float speed = Input.GetAxis("Vertical") * agent.maxAccel;
+
+            float speed = 0;
+            float brakingSpeed;
+            bool isGoingForward = lastspeed >= 0 ;
+
+            if (isGoingForward)
+            {
+                speed = Math.Max(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed - (float)0.1);
+                brakingSpeed = BRAKING;
+
+            }
+            else {
+                Debug.Log((Input.GetAxis("Vertical") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
+                Debug.Log(Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1).ToString());
+                speed = Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1);
+                brakingSpeed = -BRAKING;
+
+            }
+
+           
+            if (Input.GetAxis("breakKeys") > 0) {
+                speed = lastspeed - brakingSpeed;
+                if ((speed < 0 && isGoingForward) || (speed > 0 && !isGoingForward)) {
+                    speed = 0;
+                }
+            }
+
+
+            lastspeed = speed;
+
+
+            //Debug.Log(speed.ToString());
             float rotation = - Input.GetAxis("Horizontal") / 20;
 
             if (speed != 0) {
                 dir = RotateVector2d(dir, rotation).normalized;
             }
-            
 
+            this.transform.LookAt(this.transform.position + dir);
             steering.linear = dir * speed;
 
             steering.linear = this.transform.parent.TransformDirection(Vector3.ClampMagnitude(steering.linear, agent.maxAccel));
@@ -69,6 +106,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             {
                 dir = RotateVector2d(dir, rotation).normalized;
             }
+            //ADD INERTIA !!!
             this.transform.LookAt(this.transform.position + dir);
             steering.linear = dir * speed;
 
