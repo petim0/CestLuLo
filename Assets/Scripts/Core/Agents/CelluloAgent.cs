@@ -28,10 +28,10 @@ public class CelluloAgent : SteeringAgent
         AssignID();
         _leds = this.transform.Find("Leds").gameObject;
         if (this.gameObject.CompareTag("Player1")){
-            initialColor = PersistentManagerScript.Instance.initialColor1;
+            initialColor = new Color(0, 0, 100);
         } else if (this.gameObject.CompareTag("Player2")){
-            initialColor = PersistentManagerScript.Instance.initialColor2;
-        }
+            initialColor = new Color(100, 0, 0);//titi jtm mon amour de toujours 
+        }//tes tro bo mon chou
         SetVisualEffect(0, initialColor, 0);
 
 

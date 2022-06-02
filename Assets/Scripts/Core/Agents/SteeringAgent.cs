@@ -55,7 +55,6 @@ public class SteeringAgent : MonoBehaviour
     public void SetSteering(Steering steering)
     {
         this.steering = steering;
-        Debug.Log(steering.linear.ToString() + this.GetInstanceID().ToString());
     }
 
     public void SetSteering(Steering steering, float weight)

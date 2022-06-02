@@ -70,8 +70,8 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
             }
             else {
-                Debug.Log((Input.GetAxis("Vertical") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
-                Debug.Log(Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1).ToString());
+                //Debug.Log((Input.GetAxis("Vertical") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
+                //Debug.Log(Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1).ToString());
                 speed = Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1);
                 brakingSpeed = -BRAKING;
 
@@ -99,7 +99,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
 
             //Debug.Log(speed.ToString());
-            float rotation = - Input.GetAxis("Horizontal") / 20;
+            float rotation = - Input.GetAxis("Horizontal") / 40;
 
             if (speed != 0) {
                 dir = RotateVector2d(dir, rotation).normalized;
