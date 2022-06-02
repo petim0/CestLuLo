@@ -12,7 +12,7 @@ public enum InputKeyboard{
 
 public class MoveWithKeyboardBehavior : AgentBehaviour
 {
-    private InputKeyboard inputKeyboard;
+    public InputKeyboard inputKeyboard;
      
 
     private Vector3 _target;
