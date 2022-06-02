@@ -25,6 +25,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     //PARALYZED
     private int paralyzedTime = 200;
     public bool isParalyzed;
+    private const int paralysisTime = 200;
     //
 
     void Start(){
@@ -215,5 +216,6 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
     public void Paralyze() {
         isParalyzed = isParalyzed == true ? false : true;
+        paralyzedTime = paralysisTime;
     }
 }
