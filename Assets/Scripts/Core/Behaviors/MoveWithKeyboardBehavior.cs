@@ -12,11 +12,17 @@ public enum InputKeyboard{
 
 public class MoveWithKeyboardBehavior : AgentBehaviour
 {
-    private InputKeyboard inputKeyboard;
+    public InputKeyboard inputKeyboard;
 
     private Vector3 _target;
     public Camera Camera;
+    private Vector3 dir;
 
+
+    //PARALYZED
+    private int paralyzedTime = 200;
+    public bool isParalyzed;
+    //
     private bool mooving = false;
 
     void Start(){
@@ -25,6 +31,8 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         } else if (this.gameObject.CompareTag("Player2")){
             inputKeyboard = PersistentManagerScript.Instance.p2Controls;
         }
+
+        dir = new Vector3(1, 0, 0);
     }
 
     public void OnEnable()
@@ -40,17 +48,68 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     {
 
         Steering steering = new Steering();
+
+
         //implement your code here
         if ((int) inputKeyboard == 0)
         {
+            //float speed = Input.GetAxis("Vertical") * agent.maxAccel;
+            //TODO: paralyzed behavior
             
-            steering.linear = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * agent.maxAccel;
+
+            float speed;
+            if (isParalyzed && paralyzedTime > 0) {
+                paralyzedTime -= 1;
+                speed = 0;
+                Debug.Log("PARALYZED");
+                if (paralyzedTime < 0) {
+                    isParalyzed = false;
+                }
+            } else {
+                speed = Input.GetAxis("Vertical") * agent.maxAccel;
+            }
+            
+            float rotation = - Input.GetAxis("Horizontal") / 20;
+
+            if (speed != 0)
+            {
+                dir = RotateVector2d(dir, rotation).normalized;
+            }
+            this.transform.LookAt(this.transform.position + dir);
+
+            steering.linear = dir * speed;
+
             steering.linear = this.transform.parent.TransformDirection(Vector3.ClampMagnitude(steering.linear, agent.maxAccel));
 
         }
         else if ((int) inputKeyboard == 1)
         {
-            steering.linear = new Vector3(Input.GetAxis("HorizontalWASD"), 0, Input.GetAxis("VerticalWASD")) * agent.maxAccel;
+            //float speed = Input.GetAxis("VerticalWASD") * agent.maxAccel;
+            //TODO: paralyzed behavior
+            
+            float speed;
+            if (isParalyzed && paralyzedTime > 0) {
+                paralyzedTime -= 1;
+                speed = 0;
+                Debug.Log("PARALYZED");
+                if (paralyzedTime < 0) {
+                    isParalyzed = false;
+                }
+            } else {
+                speed = Input.GetAxis("VerticalWASD") * agent.maxAccel;
+            }
+            
+            float rotation = -Input.GetAxis("HorizontalWASD") / 20;
+
+
+            if (speed != 0)
+            {
+                dir = RotateVector2d(dir, rotation).normalized;
+            }
+            this.transform.LookAt(this.transform.position + dir);
+
+            steering.linear = dir * speed;
+
             steering.linear = this.transform.parent.TransformDirection(Vector3.ClampMagnitude(steering.linear, agent.maxAccel));
         }
         else {
@@ -102,9 +161,21 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
         if (this.gameObject.CompareTag("Player2"))
         {
-            Debug.Log(steering.linear.ToString());
+            //Debug.Log(steering.linear.ToString());
         }
 
         return steering;
+    }
+
+    public void Paralyze() {
+        isParalyzed = isParalyzed == true ? false : true;
+    }
+
+    private Vector3 RotateVector2d(Vector3 dir, float rad)
+    {
+        Vector3 result = new Vector3(0, 0, 0);
+        result.x = dir.x * (float) Math.Cos(rad) - dir.z * (float) Math.Sin(rad);
+        result.z = dir.x * (float) Math.Sin(rad) + dir.z * (float) Math.Cos(rad);
+        return result;
     }
 }
