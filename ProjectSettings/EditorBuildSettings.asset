@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: c6653960dda114073ab4eaa1ee1ae34a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SpaceGhostSheepGame.unity
     guid: 84703c60e67a042ddba353069c1e2905
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameOverScene.unity
     guid: a0ccc445886b99243b8559b530aa05b8
+  - enabled: 1
+    path: Assets/Scenes/MenuCestLuLo.unity
+    guid: fc2e84cd16db6cf4bab858f6eb898311
+  - enabled: 1
+    path: Assets/Scenes/C'estLuLo.unity
+    guid: 3619df98d3cc2db4a95cde0f080065dd
   m_configObjects: {}
