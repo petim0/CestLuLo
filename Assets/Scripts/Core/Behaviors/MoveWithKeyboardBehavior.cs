@@ -70,8 +70,8 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
             }
             else {
-                Debug.Log((Input.GetAxis("Vertical") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
-                Debug.Log(Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1).ToString());
+                //Debug.Log((Input.GetAxis("Vertical") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
+                //Debug.Log(Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1).ToString());
                 speed = Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1);
                 brakingSpeed = -BRAKING;
 
@@ -88,7 +88,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             if (isParalyzed && paralyzedTime > 0) {
                 paralyzedTime -= 1;
                 speed = 0;
-                Debug.Log("PARALYZED");
+                Debug.Log("Timer 1: "+paralyzedTime);
                 if (paralyzedTime < 0) {
                     isParalyzed = false;
                 }
@@ -119,7 +119,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             if (isParalyzed && paralyzedTime > 0) {
                 paralyzedTime -= 1;
                 speed = 0;
-                Debug.Log("PARALYZED");
+                Debug.Log("Timer 2: "+paralyzedTime);
                 if (paralyzedTime < 0) {
                     isParalyzed = false;
                 }
@@ -215,7 +215,12 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
 
     public void Paralyze() {
-        isParalyzed = isParalyzed == true ? false : true;
+        if (isParalyzed == false) {
+            isParalyzed = true;
+        } else if (isParalyzed == true) {
+
+        }
+        Debug.Log("Paralyzed: "+ isParalyzed);
         paralyzedTime = paralysisTime;
     }
 }

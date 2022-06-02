@@ -9,14 +9,29 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space")) {
-            weapon.isFiring = true;
-            //weapon.Fire();
+        if (this.gameObject.CompareTag("Player1")) {
+
+            if (Input.GetKeyDown(KeyCode.L)) {
+                weapon.isFiring = true;
+                //weapon.Fire();
+            }
+
+            if (Input.GetKeyUp(KeyCode.L)) {
+                weapon.isFiring = false;
+            }
+        } else if (this.gameObject.CompareTag("Player2")) {
+
+            if (Input.GetKeyDown(KeyCode.F)) {
+                weapon.isFiring = true;
+                //weapon.Fire();
+            }
+
+            if (Input.GetKeyUp(KeyCode.F)) {
+                weapon.isFiring = false;
+            }
         }
 
-        if (Input.GetKeyUp("space")){
-            weapon.isFiring = false;
-        }
+
     }
 
 }

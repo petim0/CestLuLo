@@ -8,8 +8,6 @@ public class Bullet : MonoBehaviour
     public float speed;
     public float bulletLifetime;
 
-    public int PARALYZE_VALUE;
-
     // Start is called before the first frame update
     void Start()
     {
