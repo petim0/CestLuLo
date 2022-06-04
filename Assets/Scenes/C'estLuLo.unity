@@ -8044,7 +8044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394da853c9f3741f4ba6c2cdf5fd40ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCpNb: 7
+  players:
+  - {fileID: 1948193788}
   cps:
   - {fileID: 503262527}
   - {fileID: 887458049}
