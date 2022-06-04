@@ -9,7 +9,6 @@ public class CpScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(this.ToString());
         sceneManager.passed(other.transform.parent.tag, CpNb);
 
      }

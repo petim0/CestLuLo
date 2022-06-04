@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+
 
 public class SceneManagerCestlulo : MonoBehaviour
 {
@@ -23,6 +26,10 @@ public class SceneManagerCestlulo : MonoBehaviour
     private float[] distances;
     public int[] position;
 
+    public Text player1Pos;
+    public Text player2Pos;
+
+
     
 
 
@@ -35,9 +42,12 @@ public class SceneManagerCestlulo : MonoBehaviour
         distances = new float[players.Length];
         position = new int[players.Length];
 
+        player1Pos.text = "FIRST!";
+        player2Pos.text = "FIRST!";
 
         LAP_VALUE = 1000;
         WAYPOINT_VALUE = LAP_VALUE / (maxCpNb+1);
+
     }
 
     // Update is called once per frame
@@ -48,7 +58,7 @@ public class SceneManagerCestlulo : MonoBehaviour
         Debug.Log(cps[0].getPosition());
         */
 
-        //Debug.Log(GetDistance(0, P1LastCP, P1laps));
+        
 
         //C'est immonde mais j'ai pas eu le courage de faire plus jolis
         // Et je sais pas ce que c'est le mieux entre for forfor et forfor qui refait des calculs
@@ -67,13 +77,15 @@ public class SceneManagerCestlulo : MonoBehaviour
                 
         }
 
+        /*
         for (int i = 0; i < players.Length; i++)
         {
             Debug.Log(i.ToString() + "is: " + position[i].ToString());
         }
-        
+        */
 
-        
+        player1Pos.text = position[0].ToString();
+        player2Pos.text = position[1].ToString();
     }
 
 
