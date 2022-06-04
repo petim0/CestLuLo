@@ -29,11 +29,15 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     //
 
     void Start(){
+        /*
         if (this.gameObject.CompareTag("Player1")){
             inputKeyboard = PersistentManagerScript.Instance.p1Controls;
         } else if (this.gameObject.CompareTag("Player2")){
             inputKeyboard = PersistentManagerScript.Instance.p2Controls;
         }
+        */
+
+
 
         dir = new Vector3(1, 0, 0);
         lastspeed = 0;
@@ -222,5 +226,9 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         }
         Debug.Log("Paralyzed: "+ isParalyzed);
         paralyzedTime = paralysisTime;
+    }
+
+    public Vector3 getPosition() {
+        return this.transform.position;
     }
 }
