@@ -28,8 +28,8 @@ public class CameraController : MonoBehaviour
         // Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
 
 
-        transform.position = Vector3.Lerp(transform.position, player.transform.position,.2f );
-        transform.rotation = Quaternion.Lerp(transform.rotation, player.transform.rotation, .5f);
+        transform.position = Vector3.Lerp(transform.position, player.transform.position,1f );
+        transform.rotation = Quaternion.Lerp(transform.rotation, player.transform.rotation, 1f);
     
       //  transform.position = player.transform.position + offset;
      //   transform.rotation = Quaternion.Slerp(transform.rotation, player.transform.rotation, Time.deltaTime * Turnspeed);   
