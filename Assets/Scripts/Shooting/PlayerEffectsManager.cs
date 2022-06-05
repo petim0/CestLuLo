@@ -25,6 +25,7 @@ public class PlayerEffectsManager : MonoBehaviour
             currentSpeed = startingSpeed;
         }
         */
+        if (this.tag == )
         this.gameObject.GetComponent<MoveWithKeyboardBehavior>().Paralyze();
     }
 

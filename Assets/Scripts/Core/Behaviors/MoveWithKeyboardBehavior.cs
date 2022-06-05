@@ -227,8 +227,4 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         Debug.Log("Paralyzed: "+ isParalyzed);
         paralyzedTime = paralysisTime;
     }
-
-    public Vector3 getPosition() {
-        return this.transform.position;
-    }
 }
