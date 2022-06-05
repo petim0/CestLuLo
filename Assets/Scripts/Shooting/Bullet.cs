@@ -28,10 +28,18 @@ public class Bullet : MonoBehaviour
 
     public void OnCollisionEnter(Collision other) {
         string tag = other.gameObject.tag;
-        if (tag == "Player1" || tag == "Player2") {
+        if (tag == "Player1" || tag == "Player2")
+        {
             other.gameObject.GetComponent<PlayerEffectsManager>().ParalyzePlayer();
             Destroy(gameObject);
-        } else {
+        }
+        else if (tag == "Player3")
+        {
+            other.gameObject.GetComponent<followPath>().Paralyze();
+            Destroy(gameObject);
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
