@@ -14,6 +14,8 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 {
     public InputKeyboard inputKeyboard;
      
+    private const int rotationDivider = 20;
+    private const int slidingRotationDivider = 1;
 
     private Vector3 _target;
     public Camera Camera;
@@ -26,7 +28,16 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     private int paralyzedTime = 200;
     public bool isParalyzed;
     private const int paralysisTime = 200;
-    //
+    
+    //SLIDE
+    private Steering lastSteering;
+    private bool isSliding;
+    
+    //Control Inversion
+    private int invertedTime;
+    public bool isInverted;
+    private const int inversionTime = 200;
+
 
     void Start(){
         /*
@@ -36,8 +47,6 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             inputKeyboard = PersistentManagerScript.Instance.p2Controls;
         }
         */
-
-
 
         dir = new Vector3(1, 0, 0);
         lastspeed = 0;
@@ -57,6 +66,10 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     {
 
         Steering steering = new Steering();
+
+        if (isSliding && !isParalyzed) {
+            return lastSteering; 
+        }
 
         
 
@@ -103,7 +116,17 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
 
 
             //Debug.Log(speed.ToString());
-            float rotation = - Input.GetAxis("Horizontal") / 40;
+            float rotation;
+            int divider = (isSliding && !isParalyzed) ? slidingRotationDivider : rotationDivider;
+            if (isInverted && invertedTime > 0) {
+                invertedTime -= 1;
+                rotation = Input.GetAxis("Horizontal") / divider;
+                if (invertedTime < 0) {
+                    isInverted = false;
+                }
+            } else {
+                rotation = - Input.GetAxis("Horizontal") / divider;
+            }
 
             if (speed != 0) {
                 dir = RotateVector2d(dir, rotation).normalized;
@@ -130,7 +153,18 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             } else {
                 speed = Input.GetAxis("VerticalWASD") * agent.maxAccel;
             }
-            float rotation = -Input.GetAxis("HorizontalWASD") / 20;
+            
+            float rotation;
+            int divider = (isSliding && !isParalyzed) ? slidingRotationDivider : rotationDivider;
+            if (isInverted && invertedTime > 0) {
+                invertedTime -= 1;
+                rotation = Input.GetAxis("HorizontalWASD") / divider;
+                if (invertedTime < 0) {
+                    isInverted = false;
+                }
+            } else {
+                rotation = - Input.GetAxis("HorizontalWASD") / divider;
+            }
 
 
             if (speed != 0)
@@ -224,7 +258,25 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
         } else if (isParalyzed == true) {
 
         }
-        Debug.Log("Paralyzed: "+ isParalyzed);
         paralyzedTime = paralysisTime;
+    }
+
+    public void Slide() {
+        if (isParalyzed == true) {
+        } else {
+            isSliding = true;
+        }
+    }
+
+    public void InverseControl() {
+        if (isInverted == false) {
+            isInverted = true;
+        } else if (isInverted == true) {
+        }
+        invertedTime = inversionTime;
+    }
+    
+    public void StopSliding() {
+        isSliding = false;
     }
 }
