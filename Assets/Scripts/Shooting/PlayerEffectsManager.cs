@@ -28,6 +28,15 @@ public class PlayerEffectsManager : MonoBehaviour
         this.gameObject.GetComponent<MoveWithKeyboardBehavior>().Paralyze();
     }
 
+
+    public void Slide(){
+        this.gameObject.GetComponent<MoveWithKeyboardBehavior>().Slide();
+    }
+
+    public void StopSliding(){
+        this.gameObject.GetComponent<MoveWithKeyboardBehavior>().StopSliding();
+    }
+
     // Update is called once per frame
     void Update()
     {
