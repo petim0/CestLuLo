@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/C'estLuLo.unity
     guid: 3619df98d3cc2db4a95cde0f080065dd
+  - enabled: 1
+    path: Assets/Scenes/GameOverCestLuLo.unity
+    guid: 9c248a03952724f6ea23cc0f8951f260
   m_configObjects: {}

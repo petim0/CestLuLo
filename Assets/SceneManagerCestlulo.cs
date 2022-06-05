@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 
@@ -12,7 +13,7 @@ public class SceneManagerCestlulo : MonoBehaviour
     private int maxCpNb;
    
 
-    public MoveWithKeyboardBehavior[] players;
+    public positionInstance[] players;
     public CpScript[] cps;
 
     //Ceci pourrait être améliorée avec des maps
@@ -30,8 +31,7 @@ public class SceneManagerCestlulo : MonoBehaviour
     public Text player1Pos;
     public Text player2Pos;
 
-
-    
+    public int NB_OF_LAPS_TO_WIN;
 
 
     // Start is called before the first frame update
@@ -92,13 +92,18 @@ public class SceneManagerCestlulo : MonoBehaviour
 
     public void passed(string tag, int cpNb)
     {
-        int previousCP = cpNb - 1 < 0 ? maxCpNb : cpNb - 1;
+        int previousCP = cpNb - 1 < 0 ? maxCpNb - 1 : cpNb - 1;
+        //Debug.Log("Previous CP : " + previousCP);
 
         //Faudrai bien mieux faire des maps mais flemme 
         if (tag == "Player1" && lastCp[0] == previousCP) {
             lastCp[0] = cpNb;
             if (cpNb == 0) {
                 lapCount[0] += 1;
+            }
+
+            if (lapCount[0] == NB_OF_LAPS_TO_WIN) {
+                LoadGameOver();
             }
         }
 
@@ -110,7 +115,30 @@ public class SceneManagerCestlulo : MonoBehaviour
                 lapCount[1] += 1;
             }
 
+            if (lapCount[1] == NB_OF_LAPS_TO_WIN)
+            {
+                LoadGameOver();
+            }
         }
+
+        if (tag == "Player3" && lastCp[2] == previousCP)
+        {
+
+            lastCp[2] = cpNb;
+            if (cpNb == 0)
+            {
+                lapCount[2] = lapCount[2] + 1;
+            }
+
+            //Debug.Log(lapCount[2].ToString());
+            //Debug.Log(lapCount[2] == NB_OF_LAPS_TO_WIN);
+            if (lapCount[2] == NB_OF_LAPS_TO_WIN)
+            {
+                LoadGameOver();
+            }
+        }
+
+
         /*
         Debug.Log(tag);
         Debug.Log(P1LastCP.ToString() + " " + P2LastCP.ToString());
@@ -124,5 +152,14 @@ public class SceneManagerCestlulo : MonoBehaviour
         
         return (players[playerNb].getPosition() - cps[LastCp].getPosition()).magnitude + LastCp * WAYPOINT_VALUE + currentLap * LAP_VALUE;
     }
-    
+
+
+    void LoadGameOver()
+    {
+        PersistentManagerScript.Instance.positions = position;
+        SceneManager.LoadScene("GameOverCestLuLo");
+    }
+
+
+
 }

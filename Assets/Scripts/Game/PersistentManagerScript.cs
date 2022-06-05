@@ -17,6 +17,8 @@ public class PersistentManagerScript : MonoBehaviour
     public int player1Score;
     public int player2Score;
 
+    public int[] positions;
+
     private void Awake()
     {
         if (Instance == null)
