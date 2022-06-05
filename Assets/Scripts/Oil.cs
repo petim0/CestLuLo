@@ -18,7 +18,7 @@ public class Oil : MonoBehaviour
 
     public void OnTriggerEnter(Collider other) {
         string tag = other.transform.parent.gameObject.tag;
-        if (tag == "Player1" || tag == "Player2") {
+        if (tag == "Player1" || tag == "Player2" ) {
             other.transform.parent.gameObject.GetComponent<PlayerEffectsManager>().Slide();
             //other.transform.parent.gameObject.GetComponent<MoveWithKeyboardBehavior>().InverseControl();
         } else {
@@ -28,7 +28,7 @@ public class Oil : MonoBehaviour
 
     public void OnTriggerExit(Collider other) {
         string tag = other.transform.parent.gameObject.tag;
-        if (tag == "Player1" || tag == "Player2") {
+        if (tag == "Player1" || tag == "Player2" ) {
             other.transform.parent.gameObject.GetComponent<PlayerEffectsManager>().StopSliding();
         } else {
         }

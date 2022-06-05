@@ -233,10 +233,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
              }
         }
 
-        if (this.gameObject.CompareTag("Player2"))
-        {
-            //Debug.Log(steering.linear.ToString());
-        }
+        lastSteering = steering;
 
         return steering;
     }
