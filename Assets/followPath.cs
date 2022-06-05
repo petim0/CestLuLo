@@ -54,6 +54,23 @@ public class followPath : MonoBehaviour
         else if (paralysisToSpend == 0) {
             agent.isStopped = false;
         }
+
+
+        //Faire ces calcules seulement si il a un item !
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        {
+            if (hit.transform.CompareTag("Player1") || hit.transform.CompareTag("Player2")) {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
+                Debug.Log("Did Hit");
+            }
+                
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red);
+            Debug.Log("Did not Hit");
+        }
     }
 
 }
