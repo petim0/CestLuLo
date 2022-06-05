@@ -18,8 +18,8 @@ public class followPath : MonoBehaviour
     {
         agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         currentTarget = 0;
-        Debug.Log("Starting target:" + cps[currentTarget].ToString());
-        Debug.Log("Nb of target:" + cps.Length);
+        //Debug.Log("Starting target:" + cps[currentTarget].ToString());
+        //Debug.Log("Nb of target:" + cps.Length);
         gotToWayPoint(0);
         
     }
@@ -36,7 +36,7 @@ public class followPath : MonoBehaviour
     public void goToNextWayPoint() {
         int next = (currentTarget + 1) == cps.Length ? 0 : currentTarget + 1;
         
-        Debug.Log("Next target:" + cps[next].ToString());
+        //Debug.Log("Next target:" + cps[next].ToString());
         gotToWayPoint(next);
     }
 
