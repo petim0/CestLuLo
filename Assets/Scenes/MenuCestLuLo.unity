@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08777922, g: 0.06825337, b: 0.09323289, a: 1}
+  m_IndirectSpecularColor: {r: 0.08777998, g: 0.06825394, b: 0.09323346, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3710,6 +3710,9 @@ GameObject:
   - component: {fileID: 1044888855}
   - component: {fileID: 1044888854}
   - component: {fileID: 1044888853}
+  - component: {fileID: 1044888856}
+  - component: {fileID: 1044888858}
+  - component: {fileID: 1044888857}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3765,6 +3768,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1044888856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044888852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5bc2e066cf8ea498267fb1e577ba82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+  gameLaunched: 0
+  cellulo1: {fileID: 1044888858}
+  cellulo2: {fileID: 1044888857}
+--- !u!114 &1044888857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044888852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ba4f28261c09c41a5062147bac66d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
+--- !u!114 &1044888858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044888852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ba4f28261c09c41a5062147bac66d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
 --- !u!1 &1081151858
 GameObject:
   m_ObjectHideFlags: 0
