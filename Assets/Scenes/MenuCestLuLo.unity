@@ -1473,7 +1473,7 @@ GameObject:
   - component: {fileID: 414075248}
   - component: {fileID: 414075249}
   m_Layer: 5
-  m_Name: Toggle Virtual
+  m_Name: ToggleVirtual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2780,6 +2780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 682896492}
   - component: {fileID: 682896493}
+  - component: {fileID: 682896494}
   m_Layer: 5
   m_Name: Toggle Group
   m_TagString: Untagged
@@ -2821,6 +2822,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 1
+--- !u!114 &682896494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682896491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa75ce4b281bae2439cea6bb8556e54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleVirtual: {fileID: 414075249}
+  toggleComplete: {fileID: 731157779}
 --- !u!1 &731157777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2832,7 +2847,7 @@ GameObject:
   - component: {fileID: 731157778}
   - component: {fileID: 731157779}
   m_Layer: 5
-  m_Name: Toggle Reel
+  m_Name: ToggleReel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6780,6 +6795,7 @@ GameObject:
   - component: {fileID: 1835169257}
   - component: {fileID: 1835169256}
   - component: {fileID: 1835169255}
+  - component: {fileID: 1835169260}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -6906,6 +6922,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1835169258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6944,6 +6972,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835169253}
   m_CullTransparentMesh: 1
+--- !u!114 &1835169260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835169253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394da853c9f3741f4ba6c2cdf5fd40ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
+  cps: []
+  position: 
+  player1Pos: {fileID: 0}
+  player2Pos: {fileID: 0}
+  NB_OF_LAPS_TO_WIN: 0
 --- !u!1 &1958949577
 GameObject:
   m_ObjectHideFlags: 0

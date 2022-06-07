@@ -9,6 +9,8 @@ TagManager:
   - ghost
   - Map
   - Player3
+  - Wall
+  - Tree
   layers:
   - Default
   - TransparentFX

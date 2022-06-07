@@ -33,6 +33,8 @@ public class SceneManagerCestlulo : MonoBehaviour
 
     public int NB_OF_LAPS_TO_WIN;
 
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,9 @@ public class SceneManagerCestlulo : MonoBehaviour
 
         LAP_VALUE = 1000;
         WAYPOINT_VALUE = LAP_VALUE / (maxCpNb+1);
+
+        ChooseCircuit choosen = GetComponent<ChooseCircuit>();
+        choosen.DesactivateCircuit();
 
     }
 
