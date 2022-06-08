@@ -7,26 +7,15 @@ using System.Linq;
 public class ToggleChoosen : MonoBehaviour
 {
     public Toggle tVirtual, tReel;
-    public ToggleGroup t;
 
-    /*public void Start()
+    public void Update()
     {
-        t = GetComponent<ToggleGroup>();
-        tVirtual = GetComponent<Toggle>();
-        tReel = GetComponent<Toggle>();
-
-        if (t.ActiveToggles.gameObject == tVirtual.gameObject)
+        if (tVirtual.isOn)
         {
-            Debug.Log("v");
-            //return 1;
-
-        }else if(t.ActiveToggles.gameObject == tReel.gameObject)
+            PersistentManagerScript.Instance.isVirtual = true;
+        }else if (tReel.isOn)
         {
-            Debug.Log("R");
-            //return 2;
+            PersistentManagerScript.Instance.isVirtual = false;
         }
-        else{
-            //return 0;
-        }
-    }*/
+    }
 }

@@ -15,9 +15,8 @@ public class ChooseCircuit : MonoBehaviour
     public void Start()
     {
 
-        //if (PersistenManagerScript.Instance.isVirtual)
-        //{
-
+        if (PersistentManagerScript.Instance.isVirtual)
+        {
             foreach (GameObject child in Children)
             {
                 MeshRenderer m = child.GetComponent<MeshRenderer>();
@@ -30,7 +29,7 @@ public class ChooseCircuit : MonoBehaviour
                     child.SetActive(false);
                 }
             }
-        //}
+        }
     }
 
 }
