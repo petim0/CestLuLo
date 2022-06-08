@@ -11,19 +11,26 @@ public class ChooseCircuit : MonoBehaviour
     public List<GameObject> Children;
 
 
-    public void DesactivateCircuit()
+
+    public void Start()
     {
-        foreach (GameObject child in Children)
-        {
-            MeshRenderer m = child.GetComponent<MeshRenderer>();
-            if (child.tag == "Wall")
+
+        //if (PersistenManagerScript.Instance.isVirtual)
+        //{
+
+            foreach (GameObject child in Children)
             {
-               m.enabled = false;
-            }else if(child.tag == "Tree")
-            {
-                child.SetActive(false);
+                MeshRenderer m = child.GetComponent<MeshRenderer>();
+                if (child.tag == "Wall")
+                {
+                    m.enabled = false;
+                }
+                else if (child.tag == "Tree")
+                {
+                    child.SetActive(false);
+                }
             }
-        }
+        //}
     }
 
 }

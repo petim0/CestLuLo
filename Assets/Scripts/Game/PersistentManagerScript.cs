@@ -19,6 +19,8 @@ public class PersistentManagerScript : MonoBehaviour
 
     public int[] positions;
 
+    public bool isVirtual;
+
     private void Awake()
     {
         if (Instance == null)

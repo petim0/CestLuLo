@@ -1474,7 +1474,7 @@ GameObject:
   - component: {fileID: 414075249}
   m_Layer: 5
   m_Name: ToggleVirtual
-  m_TagString: Untagged
+  m_TagString: ToggleVirtual
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1487,7 +1487,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414075247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1305588939}
@@ -2831,11 +2831,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 682896491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa75ce4b281bae2439cea6bb8556e54b, type: 3}
+  m_Script: {fileID: 11500000, guid: 68f00fd93d01ce9419598fd2d5d06744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleVirtual: {fileID: 414075249}
-  toggleComplete: {fileID: 731157779}
+  tVirtual: {fileID: 414075249}
+  tReel: {fileID: 731157779}
+  t: {fileID: 0}
 --- !u!1 &731157777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,7 +2849,7 @@ GameObject:
   - component: {fileID: 731157779}
   m_Layer: 5
   m_Name: ToggleReel
-  m_TagString: Untagged
+  m_TagString: ToggleReel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6570,6 +6571,59 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1701831482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1701831484}
+  - component: {fileID: 1701831483}
+  m_Layer: 0
+  m_Name: PersistentManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1701831483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701831482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7818bbae9f0e48bb8bc01faeeb0d975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameTime: 0
+  p1Controls: 1
+  p2Controls: 0
+  initialColor1: {r: 1, g: 0, b: 0, a: 0}
+  initialColor2: {r: 0, g: 0.12898159, b: 1, a: 0}
+  player1Score: 0
+  player2Score: 0
+  positions: 
+  tVirtual: {fileID: 414075249}
+  tReel: {fileID: 731157779}
+--- !u!4 &1701831484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701831482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 167.3433, y: 89.64233, z: 79.80798}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1725777227
 GameObject:
   m_ObjectHideFlags: 0

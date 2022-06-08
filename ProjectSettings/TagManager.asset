@@ -11,6 +11,8 @@ TagManager:
   - Player3
   - Wall
   - Tree
+  - ToggleReel
+  - ToggleVirtual
   layers:
   - Default
   - TransparentFX
