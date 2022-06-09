@@ -113,8 +113,8 @@ public class GhostSheepBehavior : AgentBehaviour
          
             myAudioSource.Play();
             
-            cellulo1.OnCelluloGhost();
-            cellulo2.OnCelluloGhost();
+           // cellulo1.OnCelluloGhost();
+           // cellulo2.OnCelluloGhost();
             Invoke("switchBehavior", Random.Range(minSwitchBackTimer, maxSwitchBackTimer));
 
         } else {
@@ -124,8 +124,8 @@ public class GhostSheepBehavior : AgentBehaviour
 
             myAudioSheep.Play();
 
-            cellulo1.OnCelluloSheep();
-            cellulo2.OnCelluloSheep();
+            //cellulo1.OnCelluloSheep();
+           // cellulo2.OnCelluloSheep();
             
             Invoke("switchBehavior", Random.Range(minSwitchBackTimer, maxSwitchBackTimer));
 

@@ -1,4 +1,4 @@
-using System.Collections;
+//using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +19,7 @@ public class CelluloInGameBehavior : AgentBehaviour
         if(celluloAgent==null){
             Debug.LogWarning("An active CelluloAgent should be attached to the same gameobject.");
         }
-        OnCelluloSheep();
+        //OnCelluloSheep();
     }
 
     // Update is called once per frame
@@ -37,15 +37,21 @@ public class CelluloInGameBehavior : AgentBehaviour
 
 
     
-    public void OnCelluloGhost(){
+  /*  public void OnCelluloGhost(){
           if(celluloAgent==null){
             Debug.LogWarning("An active CelluloAgent should be attached to the same gameobject.");
         }else{
             agent.MoveOnStone();
         }
+    }*/
+
+    public void CelluloOnOil(){ //ne pas oublier de clear le haptic feedback et setcasualbackdriveassist après l'appel
+        agent.MoveOnIce();
     }
 
-    public void OnCelluloSheep(){
+    
+
+   /* public void OnCelluloSheep(){
         // agent.ResetOnClick(); //on doit reset pour enlever le moveOnStone ?
         if(celluloAgent==null){
             Debug.LogWarning("An active CelluloAgent should be attached to the same gameobject.");
@@ -54,7 +60,7 @@ public class CelluloInGameBehavior : AgentBehaviour
             agent.SetCasualBackdriveAssistEnabled(true);
          }
  
-    }
+    }*/
 
     public bool isPlayerConnected(){
         return this.playerConnected;
