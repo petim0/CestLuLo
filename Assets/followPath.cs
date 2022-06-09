@@ -27,6 +27,7 @@ public class followPath : MonoBehaviour
     {
         agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         currentTarget = 0;
+        
         //Debug.Log("Starting target:" + cps[currentTarget].ToString());
         //Debug.Log("Nb of target:" + cps.Length);
         gotToWayPoint(0);
@@ -108,24 +109,58 @@ public class followPath : MonoBehaviour
 
 
         //Faire ces calcules seulement si il a un item !
-        /*
+        
         if (inventory.inventory.Count > 0)
         {
             InventoryItem item = inventory.inventory[0];
+
+            //SI il a une bullet
             if (item.itemData.displayName == "Para")
             {
                 if (item.stackSize > 0)
                 {
-                    weapon.isFiring = true;
-                    inventory.Remove(item.itemData);
+                    RaycastHit hit;
+                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+                    {
+                        if (hit.transform.CompareTag("Player1") || hit.transform.CompareTag("Player2"))
+                        {
+                            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
+                            Debug.Log("Did Hit");
+                            //Il la tire 
+                            weapon.isFiring = true;
+                            inventory.Remove(item.itemData);
+                        }
+
+                    }
+                    else
+                    {
+                        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red, 1);
+                        //Debug.Log("Did not Hit");
+                    }
+
+                    
+                    
                 }
             }
             else if (item.itemData.displayName == "Oil")
             {
                 if (item.stackSize > 0)
                 {
-                    oilWeapon.isFiring = true;
-                    inventory.Remove(item.itemData);
+                    if (!waitingOndropMoment && moveToDropOil())
+                    { 
+                        waitingOndropMoment = true;
+                    }
+
+                    if (waitingOndropMoment)
+                    {
+                        if (!agent.pathPending && !agent.hasPath)
+                        {
+                            Debug.Log("I have reached my destination!");
+                            //remplacer testing par l'huile et drop l'huile !!
+                            inventory.Remove(item.itemData);
+                            agent.SetDestination(cps[currentTarget].transform.position);
+                            oilWeapon.isFiring = true;
+                        }
                 }
             }
             else if (item.itemData.displayName == "Dizzy")
@@ -137,44 +172,13 @@ public class followPath : MonoBehaviour
                 }
             }
         }
-        */
-        if (true) { 
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-            {
-                if (hit.transform.CompareTag("Player1") || hit.transform.CompareTag("Player2")) {
-                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
-                    Debug.Log("Did Hit");
-                }
-
-            }
-            else
-            {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red);
-                Debug.Log("Did not Hit");
-            }
-        }
         
 
-        //remplacer testing avec si il a de l'huile
-        if (testing && !waitingOndropMoment)
-        {
-            if (moveToDropOil())
-            {
-                waitingOndropMoment = true;
-            }
-        }
+        
+            
+        
 
-        if (waitingOndropMoment)
-        {
-            if (!agent.pathPending && !agent.hasPath)
-            {
-                Debug.Log("I have reached my destination!");
-                //remplacer testing par l'huile et drop l'huile !!
-                testing = false;
-                agent.SetDestination(cps[currentTarget].transform.position);
-                //drop l'hulie ici 
-            }
+        
             
             
           

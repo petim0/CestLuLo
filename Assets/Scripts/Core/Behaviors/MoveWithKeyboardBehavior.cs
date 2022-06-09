@@ -145,6 +145,9 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             float brakingSpeed = 0;
             bool isGoingForward = lastspeed >= 0;
 
+            Debug.Log((Input.GetAxis("VerticalWASD") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
+            Debug.Log(Math.Min(Input.GetAxis("VerticalWASD") * agent.maxAccel, lastspeed + (float)0.1).ToString());
+
             if (isGoingForward)
             {
                 speed = Math.Max(Input.GetAxis("VerticalWASD") * agent.maxAccel, lastspeed - (float)0.1);
@@ -153,9 +156,6 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             }
             else
             {
-                //Debug.Log((Input.GetAxis("Vertical") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
-                //Debug.Log(Math.Min(Input.GetAxis("Vertical") * agent.maxAccel, lastspeed + (float)0.1).ToString());
-
                 //Pas d'inertie en arrière, c'est pas cool pour jouer
                 speed = Input.GetAxis("VerticalWASD") * agent.maxAccel;
 

@@ -10415,6 +10415,10 @@ MonoBehaviour:
   - {fileID: 1336226200}
   - {fileID: 1798849736}
   testing: 0
+  weapon: {fileID: 2075410802}
+  dizzyWeapon: {fileID: 1012121598}
+  oilWeapon: {fileID: 657560591}
+  inventory: {fileID: 1915231526}
 --- !u!195 &1524127245
 NavMeshAgent:
   m_ObjectHideFlags: 0
