@@ -10,8 +10,9 @@ public class followPath : MonoBehaviour
     private const int paralysisTime = 200;
     private int paralysisToSpend;
     private int currentTarget;
-
-
+    private int DISTANCE_DECALAGE_HUILE = 10;
+    private bool waitingOndropMoment = false;
+    public bool testing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +46,50 @@ public class followPath : MonoBehaviour
         paralysisToSpend = paralysisTime;
     }
 
+    public void Slide(Vector3 posMiddleFlaque)
+    {
+        //Debug.Log("Oh no I found oil, the american will come !");
+        //ça peu créer des problèmes ça genre ça reste bloqué
+        agent.SetDestination(this.gameObject.transform.position + (posMiddleFlaque -this.transform.position) * 2);
+        
+    }
+
+    public void StopSliding()
+    {
+        //Get it back to normal
+        agent.SetDestination(cps[currentTarget].transform.position);
+    }
+
+    private bool moveToDropOil() {
+        //ça peu créer des problèmes ça genre c'est trop loin
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit.distance, Color.red, 1);
+            if (hit.distance >= 3 && (hit.transform.CompareTag("Wall") || hit.transform.CompareTag("Wall2"))) {
+                
+                Debug.Log("Did Hit");
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit.distance, Color.red, 100);
+                agent.SetDestination(transform.position + transform.TransformDirection(Vector3.left) * DISTANCE_DECALAGE_HUILE);
+                return true;
+            }
+
+            return false;
+
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red, 4);
+            Debug.Log("Did not Hit");
+            return false;
+        }
+    }
+    
+
     private void Update()
     {
+
         if (paralysisToSpend > 0)
         {
             paralysisToSpend -= 1;
@@ -57,6 +100,7 @@ public class followPath : MonoBehaviour
 
 
         //Faire ces calcules seulement si il a un item !
+        /*
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
@@ -70,6 +114,31 @@ public class followPath : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red);
             Debug.Log("Did not Hit");
+        }
+        */
+
+        //remplacer testing avec si il a de l'huile
+        if (testing && !waitingOndropMoment)
+        {
+            if (moveToDropOil())
+            {
+                waitingOndropMoment = true;
+            }
+        }
+
+        if (waitingOndropMoment)
+        {
+            if (!agent.pathPending && !agent.hasPath)
+            {
+                Debug.Log("I have reached my destination!");
+                //remplacer testing par l'huile et drop l'huile !!
+                testing = false;
+                agent.SetDestination(cps[currentTarget].transform.position);
+                //drop l'hulie ici 
+            }
+            
+            
+          
         }
     }
 

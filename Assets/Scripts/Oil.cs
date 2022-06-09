@@ -21,7 +21,8 @@ public class Oil : MonoBehaviour
         if (tag == "Player1" || tag == "Player2" ) {
             other.transform.parent.gameObject.GetComponent<PlayerEffectsManager>().Slide();
             //other.transform.parent.gameObject.GetComponent<MoveWithKeyboardBehavior>().InverseControl();
-        } else {
+        } else if (tag == "Player3"){
+            other.transform.parent.gameObject.GetComponent<followPath>().Slide(this.gameObject.transform.position);
         }
     }
 
@@ -30,7 +31,9 @@ public class Oil : MonoBehaviour
         string tag = other.transform.parent.gameObject.tag;
         if (tag == "Player1" || tag == "Player2" ) {
             other.transform.parent.gameObject.GetComponent<PlayerEffectsManager>().StopSliding();
-        } else {
+        } else if (tag == "Player3")
+        {
+            other.transform.parent.gameObject.GetComponent<followPath>().StopSliding();
         }
     }
 }

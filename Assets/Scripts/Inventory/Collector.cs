@@ -17,7 +17,7 @@ public class Collector : MonoBehaviour
         {
             Debug.Log("Collect");
             // Collect the collectible
-            collectible.Collect();
+//            collectible.Collect();
         }
     }
 
