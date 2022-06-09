@@ -7,12 +7,20 @@ public class followPath : MonoBehaviour
 
     public CpScript[] cps;
     UnityEngine.AI.NavMeshAgent agent;
+    
     private const int paralysisTime = 200;
     private int paralysisToSpend;
     private int currentTarget;
     private int DISTANCE_DECALAGE_HUILE = 10;
     private bool waitingOndropMoment = false;
     public bool testing = false;
+
+
+    //Weapon stuff
+    public Weapon weapon;
+    public DizzyWeapon dizzyWeapon;
+    public OilWeapon oilWeapon;
+    public Inventory inventory;
 
     // Start is called before the first frame update
     void Start()
@@ -101,21 +109,52 @@ public class followPath : MonoBehaviour
 
         //Faire ces calcules seulement si il a un item !
         /*
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        if (inventory.inventory.Count > 0)
         {
-            if (hit.transform.CompareTag("Player1") || hit.transform.CompareTag("Player2")) {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
-                Debug.Log("Did Hit");
+            InventoryItem item = inventory.inventory[0];
+            if (item.itemData.displayName == "Para")
+            {
+                if (item.stackSize > 0)
+                {
+                    weapon.isFiring = true;
+                    inventory.Remove(item.itemData);
+                }
             }
-                
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red);
-            Debug.Log("Did not Hit");
+            else if (item.itemData.displayName == "Oil")
+            {
+                if (item.stackSize > 0)
+                {
+                    oilWeapon.isFiring = true;
+                    inventory.Remove(item.itemData);
+                }
+            }
+            else if (item.itemData.displayName == "Dizzy")
+            {
+                if (item.stackSize > 0)
+                {
+                    dizzyWeapon.isFiring = true;
+                    inventory.Remove(item.itemData);
+                }
+            }
         }
         */
+        if (true) { 
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+            {
+                if (hit.transform.CompareTag("Player1") || hit.transform.CompareTag("Player2")) {
+                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
+                    Debug.Log("Did Hit");
+                }
+
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red);
+                Debug.Log("Did not Hit");
+            }
+        }
+        
 
         //remplacer testing avec si il a de l'huile
         if (testing && !waitingOndropMoment)
