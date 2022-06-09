@@ -145,8 +145,8 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             float brakingSpeed = 0;
             bool isGoingForward = lastspeed >= 0;
 
-            Debug.Log((Input.GetAxis("VerticalWASD") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
-            Debug.Log(Math.Min(Input.GetAxis("VerticalWASD") * agent.maxAccel, lastspeed + (float)0.1).ToString());
+            //Debug.Log((Input.GetAxis("VerticalWASD") * agent.maxAccel).ToString() + " " + (lastspeed + (float)0.1).ToString());
+            //Debug.Log(Math.Min(Input.GetAxis("VerticalWASD") * agent.maxAccel, lastspeed + (float)0.1).ToString());
 
             if (isGoingForward)
             {
@@ -175,7 +175,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             {
                 paralyzedTime -= 1;
                 speed = 0;
-                Debug.Log("Timer 2: " + paralyzedTime);
+               // Debug.Log("Timer 2: " + paralyzedTime);
                 if (paralyzedTime < 0)
                 {
                     isParalyzed = false;

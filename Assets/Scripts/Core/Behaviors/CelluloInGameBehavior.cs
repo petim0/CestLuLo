@@ -19,8 +19,8 @@ public class CelluloInGameBehavior : AgentBehaviour
         if(celluloAgent==null){
             Debug.LogWarning("An active CelluloAgent should be attached to the same gameobject.");
         }
-        //OnCelluloSheep();
-    }
+        agent.ClearHapticFeedback();
+        agent.SetCasualBackdriveAssistEnabled(true);    }
 
     // Update is called once per frame
     void Update()
