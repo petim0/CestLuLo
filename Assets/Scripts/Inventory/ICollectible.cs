@@ -5,7 +5,7 @@ using UnityEngine;
 public interface ICollectible
 {
     // Collects
-    public void Collect()
+   public void Collect()
     {
         
     }
