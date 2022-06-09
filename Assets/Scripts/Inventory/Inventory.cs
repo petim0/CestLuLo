@@ -13,21 +13,23 @@ public class Inventory : MonoBehaviour
 
 
     private void OnEnable(){
-        //Gem.OnGemCollected += Add;
+        Boxes.OnBoxCollected += Add;
     }
 
     private void OnDisable(){
-        //Gem.OnGemCollected -= Add;
+        Boxes.OnBoxCollected -= Add;
     }
 
     public void Add(ItemData itemData) {
         if (itemDictionary.TryGetValue(itemData, out InventoryItem item)) {
             item.AddToStack();
+            Debug.Log($"{item.itemData.displayName} total stack is now {item.stackSize}");
             OnInventoryChange?.Invoke(inventory);
         } else {
             InventoryItem newItem = new InventoryItem(itemData);
             inventory.Add(newItem);
             itemDictionary.Add(itemData, newItem);
+            Debug.Log($"{item.itemData.displayName} to the inventory for the first time");
             OnInventoryChange?.Invoke(inventory);
         }
     }

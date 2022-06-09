@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-
+    public const int capacity = 1;
     public GameObject slotPrefab;
-    public List<InventorySlot> inventorySlots = new List<InventorySlot>(1);
+    public List<InventorySlot> inventorySlots = new List<InventorySlot>(capacity);
 
 
 
@@ -22,7 +22,7 @@ public class InventoryManager : MonoBehaviour
         foreach (Transform childTransform in transform) {
             Destroy(childTransform.gameObject);
         }
-        inventorySlots = new List<InventorySlot>(1);
+        inventorySlots = new List<InventorySlot>(capacity);
     }
 
     void DrawInventorySlot(List<InventoryItem> inventory){
@@ -36,7 +36,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void CreateInventorySlot(){
+    void CreateInventorySlot() {
         GameObject slot = Instantiate(slotPrefab);
         slot.transform.SetParent(transform, false);
         

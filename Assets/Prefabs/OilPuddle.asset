@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 414a23e09a8fd734d9e6714570233b99, type: 3}
-  m_Name: Confusion
+  m_Name: OilPuddle
   m_EditorClassIdentifier: 
-  displayName: 
-  icon: {fileID: 0}
+  displayName: Oil
+  icon: {fileID: 21300000, guid: f8765c266087ac246bad8357996eaba8, type: 3}

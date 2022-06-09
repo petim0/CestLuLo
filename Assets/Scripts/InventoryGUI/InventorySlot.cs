@@ -10,12 +10,12 @@ public class InventorySlot : MonoBehaviour
 
     public Image icon;
     public TextMeshProUGUI labelText;
-    public TextMeshProUGUI nbrText;
+    public TextMeshProUGUI stackSizeText;
 
     public void ClearSlot() {
         icon.enabled = false;
         labelText.enabled = false;
-        nbrText.enabled = false;
+        stackSizeText.enabled = false;
     }
 
     public void DrawSlot(InventoryItem item) {
@@ -25,11 +25,11 @@ public class InventorySlot : MonoBehaviour
         }
         icon.enabled = true;
         labelText.enabled = true;
-        nbrText.enabled = true;
+        stackSizeText.enabled = true;
 
         icon.sprite = item.itemData.icon;
         labelText.text = item.itemData.displayName;
-        nbrText.text = item.stackSize.ToString();
+        stackSizeText.text = item.stackSize.ToString();
 
     }
 
