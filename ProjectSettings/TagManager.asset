@@ -11,8 +11,6 @@ TagManager:
   - Player3
   - Wall
   - Tree
-  - ToggleReel
-  - ToggleVirtual
   - Wall2
   layers:
   - Default

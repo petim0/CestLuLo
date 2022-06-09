@@ -20,6 +20,7 @@ public class PersistentManagerScript : MonoBehaviour
     public int[] positions;
 
     public bool isVirtual;
+    public bool hardMode;
 
     private void Awake()
     {
