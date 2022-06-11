@@ -32,6 +32,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     //SLIDE
     private Steering lastSteering;
     private bool isSliding;
+    private const float minSlideSpeed = 0.5f;
     
     //Control Inversion
     private int invertedTime;
@@ -106,7 +107,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
             if (isParalyzed && paralyzedTime > 0) {
                 paralyzedTime -= 1;
                 speed = 0;
-                Debug.Log("Timer 1: "+paralyzedTime);
+                //Debug.Log("Timer 1: "+paralyzedTime);
                 if (paralyzedTime < 0) {
                     isParalyzed = false;
                 }
@@ -239,7 +240,8 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     }
 
     public void Slide() {
-        if (isParalyzed == true) {
+        if (isParalyzed == true || lastspeed < minSlideSpeed) {
+            return;
         } else {
             isSliding = true;
         }
