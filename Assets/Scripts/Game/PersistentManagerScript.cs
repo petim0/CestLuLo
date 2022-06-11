@@ -20,7 +20,7 @@ public class PersistentManagerScript : MonoBehaviour
     public int[] positions;
 
     public bool isVirtual;
-    public bool hardMode;
+    public float AiSpeed;
 
     private void Awake()
     {

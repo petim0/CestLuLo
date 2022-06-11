@@ -10,6 +10,7 @@ public class DifficultyChoosen : MonoBehaviour
 
     public void Update()
     {
+        /*
         if (tHard.isOn)
         {
             PersistentManagerScript.Instance.hardMode = true;
@@ -18,6 +19,7 @@ public class DifficultyChoosen : MonoBehaviour
         {
             PersistentManagerScript.Instance.hardMode = false;
         }
+        */
     }
 
 }

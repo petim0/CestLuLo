@@ -26,6 +26,7 @@ public class followPath : MonoBehaviour
     void Start()
     {
         agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.speed = PersistentManagerScript.Instance.AiSpeed;
         currentTarget = 0;
         
         //Debug.Log("Starting target:" + cps[currentTarget].ToString());
