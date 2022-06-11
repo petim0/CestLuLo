@@ -14,10 +14,14 @@ public class Boxes : MonoBehaviour
     public const int respawnTime = 3;
     public int timer = respawnTime;
 
-    public void Collect() {
+    public void Collect(Collider other) {
         //Debug.Log("Collected a box");
         ItemData finalData = GetRandomItemData();
         //Debug.Log("Collected a " + finalData.displayName);
+        other.transform.parent.gameObject.GetComponent<PlayerController>().inventory.Add(finalData);
+        other.transform.parent.gameObject.GetComponent<PlayerController>().inventory.Add(finalData);
+        other.transform.parent.gameObject.GetComponent<PlayerController>().inventory.Add(finalData);
+
         OnBoxCollected?.Invoke(finalData);
     }
 
@@ -31,7 +35,7 @@ public class Boxes : MonoBehaviour
             if (other.transform.parent.gameObject.GetComponent<PlayerController>().isEmpty())
             {
                 if (timer > 0) {
-                    Collect();
+                    Collect(other);
                     gameObject.GetComponent<MeshRenderer>().enabled = false;
                 }
                 respawnAfterTimer();

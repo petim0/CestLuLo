@@ -7,6 +7,9 @@ public class OilWeapon : MonoBehaviour
     public bool isFiring;
 
     public Flaque flaque;
+    
+    public Inventory inventory;
+    public int numberOfBullets;
 
     public float fireRate;
     private float shotCounter;
@@ -28,10 +31,17 @@ public class OilWeapon : MonoBehaviour
 
             shotCounter -= Time.deltaTime;
 
-            if (shotCounter <= 0) {
-                shotCounter = fireRate;
-                Flaque oil = Instantiate(flaque, firePoint.position, firePoint.rotation) as Flaque;
+            if (0 < numberOfBullets) {
+                if (shotCounter <= 0) {
+                    shotCounter = fireRate;
+                    Flaque oil = Instantiate(flaque, firePoint.position, firePoint.rotation) as Flaque;
+                    inventory.Remove(inventory.inventory[0].itemData);
+                    numberOfBullets--;                
+                }
+            } else {
+                isFiring = false;
             }
+
         } else {
             shotCounter = 0;
         }

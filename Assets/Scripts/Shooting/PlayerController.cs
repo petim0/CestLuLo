@@ -20,18 +20,21 @@ public class PlayerController : MonoBehaviour
                     InventoryItem item = inventory.inventory[0];
                     if (item.itemData.displayName == "Para") {
                         if (item.stackSize > 0) {
+                            weapon.numberOfBullets = item.stackSize;
                             weapon.isFiring = true;
-                            inventory.Remove(item.itemData);
+                            //inventory.Remove(item.itemData);
                         }
                     } else if (item.itemData.displayName == "Oil") {
                         if (item.stackSize > 0) {
+                            oilWeapon.numberOfBullets = item.stackSize;
                             oilWeapon.isFiring = true;
-                            inventory.Remove(item.itemData);
+                            //inventory.Remove(item.itemData);
                         }
                     } else if (item.itemData.displayName == "Dizzy") {
                         if (item.stackSize > 0) {
+                            dizzyWeapon.numberOfBullets = item.stackSize;
                             dizzyWeapon.isFiring = true;
-                            inventory.Remove(item.itemData);
+                            //inventory.Remove(item.itemData);
                         }
                     }
                 }
@@ -50,18 +53,21 @@ public class PlayerController : MonoBehaviour
                     InventoryItem item = inventory.inventory[0];
                     if (item.itemData.displayName == "Para") {
                         if (item.stackSize > 0) {
+                            weapon.numberOfBullets = item.stackSize;
                             weapon.isFiring = true;
-                            inventory.Remove(item.itemData);
+                            //inventory.Remove(item.itemData);
                         }
                     } else if (item.itemData.displayName == "Oil") {
                         if (item.stackSize > 0) {
+                            oilWeapon.numberOfBullets = item.stackSize;
                             oilWeapon.isFiring = true;
-                            inventory.Remove(item.itemData);
+                            //inventory.Remove(item.itemData);
                         }
                     } else if (item.itemData.displayName == "Dizzy") {
                         if (item.stackSize > 0) {
+                            dizzyWeapon.numberOfBullets = item.stackSize;
                             dizzyWeapon.isFiring = true;
-                            inventory.Remove(item.itemData);
+                            //inventory.Remove(item.itemData);
                         }
                     }
                 }

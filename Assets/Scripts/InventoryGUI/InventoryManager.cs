@@ -9,15 +9,14 @@ public class InventoryManager : MonoBehaviour
     public List<InventorySlot> inventorySlots = new List<InventorySlot>(capacity);
 
 
-
-    private void OnEnable(){
+/*    private void OnEnable(){
         Inventory.OnInventoryChange += DrawInventorySlot;
     }
 
     private void OnDisable(){
         Inventory.OnInventoryChange -= DrawInventorySlot;
     }
-
+*/
     void ResetInvetory(){
         foreach (Transform childTransform in transform) {
             Destroy(childTransform.gameObject);
@@ -25,7 +24,7 @@ public class InventoryManager : MonoBehaviour
         inventorySlots = new List<InventorySlot>(capacity);
     }
 
-    void DrawInventorySlot(List<InventoryItem> inventory){
+    public void DrawInventorySlot(List<InventoryItem> inventory){
         ResetInvetory();
         for (int i = 0; i < inventorySlots.Capacity; i++) {
             CreateInventorySlot();
