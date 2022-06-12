@@ -1,4 +1,4 @@
-Scenes used :
-for the menu : Assets/scenes/MenuCestLuLo.unity
-for the gameplay : Assets/scenes/CestLuLo.unity
-for the endgame : Assets/scenes/GameOverCestLuLo.unity
+Scenes used : <br/>
+ for the menu : Assets/scenes/MenuCestLuLo.unity, <br/>
+ for the gameplay : Assets/scenes/CestLuLo.unity, <br/>
+ for the endgame : Assets/scenes/GameOverCestLuLo.unity<br/>
