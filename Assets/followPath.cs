@@ -97,7 +97,7 @@ public class followPath : MonoBehaviour
             return false;
         }
     }
-    
+
 
     private void Update()
     {
@@ -106,13 +106,14 @@ public class followPath : MonoBehaviour
         {
             paralysisToSpend -= 1;
         }
-        else if (paralysisToSpend == 0) {
+        else if (paralysisToSpend == 0)
+        {
             agent.isStopped = false;
         }
 
 
         //Faire ces calcules seulement si il a un item !
-        
+
         if (inventory.inventory.Count > 0)
         {
             InventoryItem item = inventory.inventory[0];
@@ -128,21 +129,13 @@ public class followPath : MonoBehaviour
                         if (hit.transform.CompareTag("Player1") || hit.transform.CompareTag("Player2"))
                         {
                             //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
-                            //Debug.Log("Did Hit");
+                            Debug.Log("Did Hit");
                             //Il la tire 
                             weapon.isFiring = true;
                             inventory.Remove(item.itemData);
                         }
 
                     }
-                    else
-                    {
-                        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red, 1);
-                        //Debug.Log("Did not Hit");
-                    }
-
-                    
-                    
                 }
             }
             else if (item.itemData.displayName == "Oil")
@@ -150,7 +143,7 @@ public class followPath : MonoBehaviour
                 if (item.stackSize > 0)
                 {
                     if (!waitingOndropMoment && moveToDropOil())
-                    { 
+                    {
                         waitingOndropMoment = true;
                     }
 
@@ -164,19 +157,24 @@ public class followPath : MonoBehaviour
                             agent.SetDestination(cps[currentTarget].transform.position);
                             oilWeapon.isFiring = true;
                         }
+                    }
                 }
             }
             else if (item.itemData.displayName == "Dizzy")
             {
-                if (item.stackSize > 0)
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
                 {
-                    dizzyWeapon.isFiring = true;
-                    inventory.Remove(item.itemData);
+                    if (hit.transform.CompareTag("Player1") || hit.transform.CompareTag("Player2"))
+                    {
+                        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
+                        Debug.Log("Did Hit");
+                        //Il la tire 
+                        dizzyWeapon.isFiring = true;
+                        inventory.Remove(item.itemData);
+                    }
                 }
             }
         }
-          
-        }
     }
-
 }
