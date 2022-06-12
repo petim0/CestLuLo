@@ -17,7 +17,7 @@ public class Oil : MonoBehaviour
     }
 
     public void OnTriggerEnter(Collider other) {
-        Debug.Log("Player collided with oil");
+        //Debug.Log("Player collided with oil");
         
         string tag = other.transform.parent.gameObject.tag;
         if (tag == "Player1" || tag == "Player2" ) {

@@ -32,7 +32,7 @@ public class MoveWithKeyboardBehavior : AgentBehaviour
     //SLIDE
     private Steering lastSteering;
     private bool isSliding;
-    private const float minSlideSpeed = 0.5f;
+    private const float minSlideSpeed = 0.8f;
     
     //Control Inversion
     private int invertedTime;

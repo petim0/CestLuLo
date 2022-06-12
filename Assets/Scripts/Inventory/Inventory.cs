@@ -28,12 +28,18 @@ public class Inventory : MonoBehaviour
         if (itemDictionary.TryGetValue(itemData, out InventoryItem item)) {
             item.AddToStack();
             //Debug.Log($"{item.itemData.displayName} total stack is now {item.stackSize}");
+            if (this.transform.parent.gameObject.tag == "Player3") {
+                return;
+            }
             inventoryManager.DrawInventorySlot(inventory);
         } else {
             InventoryItem newItem = new InventoryItem(itemData);
             inventory.Add(newItem);
             itemDictionary.Add(itemData, newItem);
             //Debug.Log($"{item.itemData.displayName} to the inventory for the first time");
+            if (this.transform.parent.gameObject.tag == "Player3") {
+                return;
+            }
             inventoryManager.DrawInventorySlot(inventory);
         }
     }
@@ -44,6 +50,9 @@ public class Inventory : MonoBehaviour
             if (item.stackSize == 0) {
                 inventory.Remove(item);
                 itemDictionary.Remove(itemData);
+            }
+            if (this.transform.parent.gameObject.tag == "Player3") {
+                return;
             }
             inventoryManager.DrawInventorySlot(inventory);
         }
