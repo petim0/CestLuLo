@@ -1,1 +1,4 @@
-Brief description about the Space Ghost Sheep: (J'ai la flemme)
+Scenes used :
+for the menu : Assets/scenes/MenuCestLuLo.unity
+for the gameplay : Assets/scenes/CestLuLo.unity
+for the endgame : Assets/scenes/GameOverCestLuLo.unity
