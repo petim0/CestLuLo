@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class followPath : MonoBehaviour
 {
@@ -27,13 +28,28 @@ public class followPath : MonoBehaviour
     {
         agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.speed = PersistentManagerScript.Instance.AiSpeed;
-        agent.baseOffset = 5000f;
+        CorrectBaseHeight();
+        Debug.Log(agent.baseOffset);
         currentTarget = 0;
         
         //Debug.Log("Starting target:" + cps[currentTarget].ToString());
         //Debug.Log("Nb of target:" + cps.Length);
         gotToWayPoint(0);
         
+    }
+
+    private void CorrectBaseHeight()
+    {
+        NavMeshHit navhit;
+        if (NavMesh.SamplePosition(this.transform.position, out navhit, 10f, NavMesh.AllAreas))
+        {
+            Ray r = new Ray(navhit.position, Vector3.down);
+            RaycastHit hit;
+            if (Physics.Raycast(r, out hit, 10f, LayerMask.GetMask("Level")))
+            {
+                agent.baseOffset = -hit.distance;
+            }
+        }
     }
 
     public CpScript getCurrentTarget() {
