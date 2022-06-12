@@ -4405,10 +4405,10 @@ MonoBehaviour:
   - {fileID: 1336226200}
   - {fileID: 1798849736}
   testing: 0
-  weapon: {fileID: 0}
-  dizzyWeapon: {fileID: 0}
-  oilWeapon: {fileID: 0}
-  inventory: {fileID: 0}
+  weapon: {fileID: 117766344}
+  dizzyWeapon: {fileID: 587217898}
+  oilWeapon: {fileID: 541336608}
+  inventory: {fileID: 2070432356}
 --- !u!114 &565976810
 MonoBehaviour:
   m_ObjectHideFlags: 0
