@@ -24,32 +24,17 @@ public class followPath : MonoBehaviour
     public Inventory inventory;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
         agent.speed = PersistentManagerScript.Instance.AiSpeed;
-        CorrectBaseHeight();
-        Debug.Log(agent.baseOffset);
+        agent.baseOffset = 0.255f;
         currentTarget = 0;
         
         //Debug.Log("Starting target:" + cps[currentTarget].ToString());
         //Debug.Log("Nb of target:" + cps.Length);
         gotToWayPoint(0);
         
-    }
-
-    private void CorrectBaseHeight()
-    {
-        NavMeshHit navhit;
-        if (NavMesh.SamplePosition(this.transform.position, out navhit, 10f, NavMesh.AllAreas))
-        {
-            Ray r = new Ray(navhit.position, Vector3.down);
-            RaycastHit hit;
-            if (Physics.Raycast(r, out hit, 10f, LayerMask.GetMask("Level")))
-            {
-                agent.baseOffset = -hit.distance;
-            }
-        }
     }
 
     public CpScript getCurrentTarget() {
