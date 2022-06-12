@@ -11,15 +11,32 @@ public class Boxes : MonoBehaviour
     
     public List<ItemData> itemDataList = new List<ItemData>(3);
 
-    public const int respawnTime = 3;
-    public int timer = respawnTime;
+    public const int respawnTime = 10;
+
+    private float inviTime = respawnTime;
+    private bool touched = false;
+
+    void Update()
+    {
+        if (touched) {
+            inviTime -= Time.deltaTime;
+            if (inviTime < 0) {
+                gameObject.GetComponent<MeshRenderer>().enabled = true;
+                touched = false;
+                inviTime = respawnTime;
+            }
+        }
+
+    }
 
     public void Collect(Collider other) {
         //Debug.Log("Collected a box");
         ItemData finalData = GetRandomItemData();
         //Debug.Log("Collected a " + finalData.displayName);
-        other.transform.parent.gameObject.GetComponent<PlayerController>().inventory.Add(finalData);
-        other.transform.parent.gameObject.GetComponent<PlayerController>().inventory.Add(finalData);
+        if (finalData.displayName != "Oil") {
+            other.transform.parent.gameObject.GetComponent<PlayerController>().inventory.Add(finalData);
+            other.transform.parent.gameObject.GetComponent<PlayerController>().inventory.Add(finalData);
+        }
         other.transform.parent.gameObject.GetComponent<PlayerController>().inventory.Add(finalData);
 
         OnBoxCollected?.Invoke(finalData);
@@ -34,16 +51,12 @@ public class Boxes : MonoBehaviour
             //Debug.Log("Player collided with box");
             if (other.transform.parent.gameObject.GetComponent<PlayerController>().isEmpty())
             {
-                if (timer > 0) {
+                if (touched == false) {
                     Collect(other);
+                    touched = true;
                     gameObject.GetComponent<MeshRenderer>().enabled = false;
                 }
-                respawnAfterTimer();
-
             }
-
-
-
         }
     }
 
@@ -53,17 +66,5 @@ public class Boxes : MonoBehaviour
         //Debug.Log("Random index is " + randomIndex);
         return itemDataList[randomIndex];
     }
-
-
-    // Set the box to be active after a certain amount of time
-    public void respawnAfterTimer() {
-        if (timer <= 0) {
-            gameObject.GetComponent<MeshRenderer>().enabled = true;
-            timer = respawnTime;
-        } else {
-            timer--;
-        }
-    }
-    
-    
+        
 }

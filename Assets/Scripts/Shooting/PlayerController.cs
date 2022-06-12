@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     {
         if (this.gameObject.CompareTag("Player1")) {
 
-            if (Input.GetKeyDown(KeyCode.L)) {
+            if (Input.GetKeyDown(KeyCode.F)) {
                 if (inventory.inventory.Count > 0) {
                     InventoryItem item = inventory.inventory[0];
                     if (item.itemData.displayName == "Para") {
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyUp(KeyCode.L)) {
+            if (Input.GetKeyUp(KeyCode.F)) {
                 weapon.isFiring = false;
                 oilWeapon.isFiring = false;
                 dizzyWeapon.isFiring = false;
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
         } else if (this.gameObject.CompareTag("Player2")) {
 
-            if (Input.GetKeyDown(KeyCode.F)) {
+            if (Input.GetKeyDown(KeyCode.L)) {
                 if (inventory.inventory.Count > 0) {
                     InventoryItem item = inventory.inventory[0];
                     if (item.itemData.displayName == "Para") {

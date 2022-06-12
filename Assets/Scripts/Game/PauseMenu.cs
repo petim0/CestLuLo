@@ -11,24 +11,15 @@ public class PauseMenu: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("START");
-        Debug.Log(pauseMenu == null);
+        //Debug.Log("START");
+        //Debug.Log(pauseMenu == null);
         pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("update");
-        if (Input.GetKeyDown(KeyCode.Space)){
-            Debug.Log("gotEscape");
-            if (isPaused){
-                resumeGame();
-            } else {
-                pauseGame();
-                Debug.Log("paused");
-            }
-        }
+
     }
 
     public void resumeGame(){
