@@ -7829,7 +7829,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1
-  inputKeyboard: 1
+  inputKeyboard: 0
   Camera: {fileID: 1300901644}
   isParalyzed: 0
   isInverted: 0
@@ -8222,7 +8222,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1
-  inputKeyboard: 0
+  inputKeyboard: 1
   Camera: {fileID: 777297957}
   isParalyzed: 0
   isInverted: 0
@@ -15093,6 +15093,10 @@ PrefabInstance:
     - target: {fileID: 1300460602924199586, guid: 6f5f6d7624c2ce5cc8896e584e30f1c5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.796
+      objectReference: {fileID: 0}
+    - target: {fileID: 1300460603369726360, guid: 6f5f6d7624c2ce5cc8896e584e30f1c5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1300460603369726366, guid: 6f5f6d7624c2ce5cc8896e584e30f1c5, type: 3}
       propertyPath: m_LocalScale.x

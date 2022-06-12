@@ -7,15 +7,17 @@ public class PersistentManagerScript : MonoBehaviour
 {
     public static PersistentManagerScript Instance { get; private set; }
 
+    //Those are useless but we can't delete it otherwise it makes errors in other scenes we don't use
     public float gameTime;
     public InputKeyboard p1Controls;
     public InputKeyboard p2Controls;
-
-    public Color initialColor1;
-    public Color initialColor2;
-
     public int player1Score;
     public int player2Score;
+
+
+    //the reste is useful 
+    public Color initialColor1;
+    public Color initialColor2;
 
     public int[] positions;
 
