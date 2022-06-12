@@ -23,6 +23,7 @@ public class PersistentManagerScript : MonoBehaviour
 
     public bool isVirtual;
     public float AiSpeed;
+    public bool muted;
 
     private void Awake()
     {
