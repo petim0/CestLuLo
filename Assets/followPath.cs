@@ -62,7 +62,7 @@ public class followPath : MonoBehaviour
     {
         //Debug.Log("Oh no I found oil, the american will come !");
         //ça peu créer des problèmes ça genre ça reste bloqué
-        agent.SetDestination(this.gameObject.transform.position + (posMiddleFlaque -this.transform.position) * 2);
+        agent.SetDestination(this.gameObject.transform.position + (posMiddleFlaque -this.transform.position) * (float) 2.5);
         
     }
 
