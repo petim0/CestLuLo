@@ -78,11 +78,11 @@ public class followPath : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hit, Mathf.Infinity))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit.distance, Color.red, 1);
+            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit.distance, Color.red, 1);
             if (hit.distance >= 3 && (hit.transform.CompareTag("Wall") || hit.transform.CompareTag("Wall2"))) {
                 
-                Debug.Log("Did Hit");
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit.distance, Color.red, 100);
+                //Debug.Log("Did Hit");
+                //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left) * hit.distance, Color.red, 100);
                 agent.SetDestination(transform.position + transform.TransformDirection(Vector3.left) * DISTANCE_DECALAGE_HUILE);
                 return true;
             }
@@ -92,8 +92,8 @@ public class followPath : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red, 4);
-            Debug.Log("Did not Hit");
+            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.red, 4);
+            //Debug.Log("Did not Hit");
             return false;
         }
     }
@@ -127,8 +127,8 @@ public class followPath : MonoBehaviour
                     {
                         if (hit.transform.CompareTag("Player1") || hit.transform.CompareTag("Player2"))
                         {
-                            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
-                            Debug.Log("Did Hit");
+                            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
+                            //Debug.Log("Did Hit");
                             //Il la tire 
                             weapon.isFiring = true;
                             inventory.Remove(item.itemData);
@@ -175,15 +175,6 @@ public class followPath : MonoBehaviour
                 }
             }
         }
-        
-
-        
-            
-        
-
-        
-            
-            
           
         }
     }
