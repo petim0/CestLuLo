@@ -131,8 +131,9 @@ public class followPath : MonoBehaviour
                             //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
                             Debug.Log("Did Hit");
                             //Il la tire 
+                            weapon.numberOfBullets = item.stackSize;
                             weapon.isFiring = true;
-                            inventory.Remove(item.itemData);
+ //                           inventory.Remove(item.itemData);
                         }
 
                     }
@@ -153,8 +154,9 @@ public class followPath : MonoBehaviour
                         {
                             Debug.Log("I have reached my destination!");
                             //remplacer testing par l'huile et drop l'huile !!
-                            inventory.Remove(item.itemData);
+ //                           inventory.Remove(item.itemData);
                             agent.SetDestination(cps[currentTarget].transform.position);
+                            oilWeapon.numberOfBullets = item.stackSize;
                             oilWeapon.isFiring = true;
                         }
                     }
@@ -170,8 +172,9 @@ public class followPath : MonoBehaviour
                         //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.black);
                         Debug.Log("Did Hit");
                         //Il la tire 
+                        dizzyWeapon.numberOfBullets = item.stackSize;
                         dizzyWeapon.isFiring = true;
-                        inventory.Remove(item.itemData);
+//                        inventory.Remove(item.itemData);
                     }
                 }
             }
